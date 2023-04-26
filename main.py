@@ -41,11 +41,10 @@ def add_to_graph(row):
 
 def main(file_name):
     read_node_fron_file(file_name)
+
+
     start_node = 'SU'
     goal_node = 'SofI'
-
-    #start_node = 'SU'
-
     parent_list = graph[goal_node].get_parents()
     if not parent_list:
         print("this node has no parents")
