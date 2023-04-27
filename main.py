@@ -36,6 +36,7 @@ def add_to_graph(row):
         
     child_node = Node(child_name, child_coords, parent_node, child_g_n,[])
     parent_node.children.append(child_node)
+    child_node.children.append(parent_node)
 
     graph[child_node.name] = child_node
 
