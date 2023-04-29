@@ -14615,6 +14615,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">campus_map</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">read_node_from_file</span><span class="p">(</span><span class="s2">"graph_data"</span><span class="p">)</span>
 <span class="n">delivery_locations</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">campus_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"List of all nodes in search tree:"</span><span class="p">)</span>
 <span class="n">delivery_locations</span>
 </pre></div>
 
@@ -14629,6 +14630,18 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>List of all nodes in search tree:
+</pre>
+</div>
+</div>
 
 <div class="jp-OutputArea-child">
 
@@ -14679,7 +14692,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Complete Map:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"OUTPUT:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Below is a list of the nodes in the search tree, along with all the children associated with each parent node."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Complete Map:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">delivery_locations</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="n">n</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">campus_map</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">])</span>
@@ -14704,7 +14719,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Complete Map:
+<pre>OUTPUT:
+Below is a list of the nodes in the search tree, along with all the children associated with each parent node.
+
+Complete Map:
 
 SU [&#39;SIE&#39;, &#39;MME&#39;, &#39;2ndStG&#39;]
 SIE [&#39;SU&#39;, &#39;ChBld&#39;]
@@ -14733,7 +14751,8 @@ ArchB [&#39;CCP&#39;]
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Randomly-Block-one-of-the-paths">Randomly Block one of the paths<a class="anchor-link" href="#Randomly-Block-one-of-the-paths">&#182;</a></h3>
+<h3 id="Randomly-Block-one-of-the-paths">Randomly Block one of the paths<a class="anchor-link" href="#Randomly-Block-one-of-the-paths">&#182;</a></h3><p>At the student union node (SU), and the Yuma Hall node (YH), one of the edges are randomly eliminated from each. This represents a blocked path.</p>
+
 </div>
 </div>
 </div>
@@ -14750,6 +14769,9 @@ ArchB [&#39;CCP&#39;]
 <span class="n">block_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"SU"</span><span class="p">,</span> <span class="s2">"YH"</span><span class="p">]</span>
 
 <span class="n">campus_map</span> <span class="o">=</span> <span class="n">Tree</span><span class="o">.</span><span class="n">read_node_from_file</span><span class="p">(</span><span class="s2">"graph_data"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OUTPUT:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Below are the nodes remaining after randomly blocking one of the edges at the SU and YH nodes:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">block_nodes</span><span class="p">:</span>
     <span class="n">random_index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">campus_map</span><span class="p">[</span><span class="n">node</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Choose a random number</span>
@@ -14783,7 +14805,10 @@ ArchB [&#39;CCP&#39;]
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Remaining Children for  SU :
+<pre>OUTPUT:
+Below are the nodes remaining after randomly blocking one of the edges at the SU and YH nodes:
+
+Remaining Children for  SU :
 [&#39;SIE&#39;, &#39;2ndStG&#39;]
 Remaining Children for  YH :
 [&#39;MME&#39;, &#39;ChBld&#39;]
@@ -14803,7 +14828,10 @@ Remaining Children for  YH :
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"New Map:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"OUTPUT:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Below is a list of the nodes in the search tree, along with all the children associated with each parent node."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">New Map:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">delivery_locations</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">,[</span><span class="n">n</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">campus_map</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">])</span>
 </pre></div>
@@ -14827,7 +14855,10 @@ Remaining Children for  YH :
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>New Map:
+<pre>OUTPUT:
+Below is a list of the nodes in the search tree, along with all the children associated with each parent node.
+
+New Map:
 
 SU [&#39;SIE&#39;, &#39;2ndStG&#39;]
 SIE [&#39;SU&#39;, &#39;ChBld&#39;]
@@ -14897,6 +14928,10 @@ ArchB [&#39;CCP&#39;]
          <span class="s2">"Items"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Panera"</span><span class="p">]}</span>
 
 <span class="n">orders</span> <span class="o">=</span> <span class="p">[</span><span class="n">order1</span><span class="p">,</span> <span class="n">order2</span><span class="p">,</span> <span class="n">order3</span><span class="p">,</span> <span class="n">order4</span><span class="p">,</span> <span class="n">order5</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OUTPUT:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Below is a list of manually defined orders. Each order has a location, food items, and the state class defined for it.</span><span class="se">\n</span><span class="s2"> The state class is a custom module designed for this search tree."</span><span class="p">)</span>
+
 <span class="n">orders</span>
 </pre></div>
 
@@ -14915,6 +14950,20 @@ ArchB [&#39;CCP&#39;]
 <div class="jp-OutputArea-child">
 
     
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>OUTPUT:
+Below is a list of manually defined orders. Each order has a location, food items, and the state class defined for it.
+ The state class is a custom module designed for this search tree.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
 
 
@@ -14922,19 +14971,19 @@ ArchB [&#39;CCP&#39;]
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>[{&#39;Location&#39;: &#39;SU&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f9646f3a0&gt;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x2423eace050&gt;,
   &#39;Items&#39;: [&#39;Chickfila&#39;]},
  {&#39;Location&#39;: &#39;SIE&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f9646e5f0&gt;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x24240269570&gt;,
   &#39;Items&#39;: [&#39;Burger&#39;]},
  {&#39;Location&#39;: &#39;YH&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f96287fa0&gt;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x242402dd540&gt;,
   &#39;Items&#39;: [&#39;Canes&#39;]},
  {&#39;Location&#39;: &#39;SofI&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f962854b0&gt;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x242410b7d90&gt;,
   &#39;Items&#39;: [&#39;Burrito&#39;]},
  {&#39;Location&#39;: &#39;SIE&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f9646e5f0&gt;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x24240269570&gt;,
   &#39;Items&#39;: [&#39;Panera&#39;]}]</pre>
 </div>
 
@@ -14995,6 +15044,9 @@ ArchB [&#39;CCP&#39;]
 
     <span class="n">orders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OUTPUT:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Below is a list of orders that were randomly generated using the above code. </span><span class="se">\n</span><span class="s2">Random locations, and items are selected, and the results are stored in the list output below."</span><span class="p">)</span>
+
 <span class="n">orders</span>
 </pre></div>
 
@@ -15013,27 +15065,41 @@ ArchB [&#39;CCP&#39;]
 <div class="jp-OutputArea-child">
 
     
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>OUTPUT:
+Below is a list of orders that were randomly generated using the above code. 
+Random locations, and items are selected, and the results are stored in the list output below.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[{&#39;Location&#39;: &#39;S&amp;Hsci&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f95304ac0&gt;,
-  &#39;Items&#39;: [&#39;Coffee&#39;, &#39;Bagel&#39;]},
- {&#39;Location&#39;: &#39;IofR&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f95307f10&gt;,
-  &#39;Items&#39;: [&#39;Coffee&#39;, &#39;Bagel&#39;]},
- {&#39;Location&#39;: &#39;2ndStG&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f96285ff0&gt;,
-  &#39;Items&#39;: [&#39;Fruit Bowl&#39;]},
- {&#39;Location&#39;: &#39;ChBld&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f96285a20&gt;,
-  &#39;Items&#39;: [&#39;Coffee&#39;, &#39;Bagel&#39;]},
+<pre>[{&#39;Location&#39;: &#39;SIE&#39;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x24240269570&gt;,
+  &#39;Items&#39;: [&#39;Wine&#39;, &#39;Filet Mignon&#39;, &#39;Asparagus&#39;]},
  {&#39;Location&#39;: &#39;SofI&#39;,
-  &#39;State&#39;: &lt;tree_search.Node at 0x20f962854b0&gt;,
-  &#39;Items&#39;: [&#39;Panera Salad&#39;, &#39;Iced Tea&#39;]}]</pre>
+  &#39;State&#39;: &lt;tree_search.Node at 0x242410b7d90&gt;,
+  &#39;Items&#39;: [&#39;Steak&#39;, &#39;Potatoes&#39;]},
+ {&#39;Location&#39;: &#39;MME&#39;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x2423f0ade40&gt;,
+  &#39;Items&#39;: [&#39;Tacos&#39;, &#39;Coca Cola&#39;]},
+ {&#39;Location&#39;: &#39;ArchB&#39;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x242410b4f10&gt;,
+  &#39;Items&#39;: [&#39;Chickfila&#39;]},
+ {&#39;Location&#39;: &#39;ECE&#39;,
+  &#39;State&#39;: &lt;tree_search.Node at 0x242410b79a0&gt;,
+  &#39;Items&#39;: [&#39;Chickfila&#39;]}]</pre>
 </div>
 
 </div>
@@ -15091,6 +15157,9 @@ ArchB [&#39;CCP&#39;]
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">botAssignments</span><span class="p">[</span><span class="n">bot</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="k">break</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OUTPUT:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"The orders created before are now assigned to one of three Foodie delivery robots. </span><span class="se">\n</span><span class="s2"> Below are the orders stored in a dictionary where the keys are Bot1, Bot2, and Bot3."</span><span class="p">)</span>
+
 <span class="n">botAssignments</span>
 </pre></div>
 
@@ -15109,27 +15178,41 @@ ArchB [&#39;CCP&#39;]
 <div class="jp-OutputArea-child">
 
     
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>OUTPUT:
+The orders created before are now assigned to one of three Foodie delivery robots. 
+ Below are the orders stored in a dictionary where the keys are Bot1, Bot2, and Bot3.
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[&nbsp;]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>{&#39;Bot1&#39;: [{&#39;Location&#39;: &#39;S&amp;Hsci&#39;,
-   &#39;State&#39;: &lt;tree_search.Node at 0x20f95304ac0&gt;,
-   &#39;Items&#39;: [&#39;Coffee&#39;, &#39;Bagel&#39;]},
-  {&#39;Location&#39;: &#39;IofR&#39;,
-   &#39;State&#39;: &lt;tree_search.Node at 0x20f95307f10&gt;,
-   &#39;Items&#39;: [&#39;Coffee&#39;, &#39;Bagel&#39;]}],
- &#39;Bot2&#39;: [{&#39;Location&#39;: &#39;2ndStG&#39;,
-   &#39;State&#39;: &lt;tree_search.Node at 0x20f96285ff0&gt;,
-   &#39;Items&#39;: [&#39;Fruit Bowl&#39;]},
-  {&#39;Location&#39;: &#39;ChBld&#39;,
-   &#39;State&#39;: &lt;tree_search.Node at 0x20f96285a20&gt;,
-   &#39;Items&#39;: [&#39;Coffee&#39;, &#39;Bagel&#39;]}],
- &#39;Bot3&#39;: [{&#39;Location&#39;: &#39;SofI&#39;,
-   &#39;State&#39;: &lt;tree_search.Node at 0x20f962854b0&gt;,
-   &#39;Items&#39;: [&#39;Panera Salad&#39;, &#39;Iced Tea&#39;]}]}</pre>
+<pre>{&#39;Bot1&#39;: [{&#39;Location&#39;: &#39;SIE&#39;,
+   &#39;State&#39;: &lt;tree_search.Node at 0x24240269570&gt;,
+   &#39;Items&#39;: [&#39;Wine&#39;, &#39;Filet Mignon&#39;, &#39;Asparagus&#39;]},
+  {&#39;Location&#39;: &#39;SofI&#39;,
+   &#39;State&#39;: &lt;tree_search.Node at 0x242410b7d90&gt;,
+   &#39;Items&#39;: [&#39;Steak&#39;, &#39;Potatoes&#39;]}],
+ &#39;Bot2&#39;: [{&#39;Location&#39;: &#39;MME&#39;,
+   &#39;State&#39;: &lt;tree_search.Node at 0x2423f0ade40&gt;,
+   &#39;Items&#39;: [&#39;Tacos&#39;, &#39;Coca Cola&#39;]},
+  {&#39;Location&#39;: &#39;ArchB&#39;,
+   &#39;State&#39;: &lt;tree_search.Node at 0x242410b4f10&gt;,
+   &#39;Items&#39;: [&#39;Chickfila&#39;]}],
+ &#39;Bot3&#39;: [{&#39;Location&#39;: &#39;ECE&#39;,
+   &#39;State&#39;: &lt;tree_search.Node at 0x242410b79a0&gt;,
+   &#39;Items&#39;: [&#39;Chickfila&#39;]}]}</pre>
 </div>
 
 </div>
@@ -15158,6 +15241,11 @@ ArchB [&#39;CCP&#39;]
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">start_state</span> <span class="o">=</span> <span class="s2">"SU"</span> <span class="c1"># Order pickup location</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"OUTPUT:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"This cell calculates the ideal path based on the A-Star search algorithm. </span><span class="se">\n</span><span class="s2">For each delivery bot, and for each order, the path is plotted below. The robots start at the Student Union (SU), </span><span class="se">\</span>
+<span class="s2">      </span><span class="se">\n</span><span class="s2">drive to the first delivery location, then drive to the second delivery location, and finally return to the Student Union again.</span><span class="se">\n</span><span class="s2">The overall path is printed in 2 or 3 segments </span><span class="se">\</span>
+<span class="s2">depending on how many orders are delivered. The labels for each node are printed in chronological order. </span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">bot</span> <span class="ow">in</span> <span class="n">botAssignments</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">bot</span> <span class="o">==</span> <span class="s2">"Bot3"</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">botAssignments</span><span class="p">[</span><span class="n">bot</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -15231,24 +15319,30 @@ ArchB [&#39;CCP&#39;]
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>&gt;&gt;&gt;&gt;  Bot1  &lt;&lt;&lt;&lt;
-ORDER  1       ENERGY USED:  1639.0
-Delivery Location: S&amp;Hsci      Items:  [&#39;Coffee&#39;, &#39;Bagel&#39;]
-ORDER  2       ENERGY USED:  1639.0
-Delivery Location: IofR      Items:  [&#39;Coffee&#39;, &#39;Bagel&#39;]
-Overall Path: [[&#39;SU&#39;, &#39;SIE&#39;, &#39;ChBld&#39;, &#39;YH&#39;, &#39;MME&#39;, &#39;S&amp;Hsci&#39;], [&#39;S&amp;Hsci&#39;, &#39;IofR&#39;], [&#39;IofR&#39;, &#39;2ndStG&#39;, &#39;SU&#39;]]
+<pre>OUTPUT:
+This cell calculates the ideal path based on the A-Star search algorithm. 
+For each delivery bot, and for each order, the path is plotted below. The robots start at the Student Union (SU),       
+drive to the first delivery location, then drive to the second delivery location, and finally return to the Student Union again.
+The overall path is printed in 2 or 3 segments depending on how many orders are delivered. The labels for each node are printed in chronological order. 
+
+&gt;&gt;&gt;&gt;  Bot1  &lt;&lt;&lt;&lt;
+ORDER  1       ENERGY USED:  2105.0
+Delivery Location: SIE      Items:  [&#39;Wine&#39;, &#39;Filet Mignon&#39;, &#39;Asparagus&#39;]
+ORDER  2       ENERGY USED:  2105.0
+Delivery Location: SofI      Items:  [&#39;Steak&#39;, &#39;Potatoes&#39;]
+Overall Path: [[&#39;SU&#39;, &#39;SIE&#39;], [&#39;SIE&#39;, &#39;ChBld&#39;, &#39;YH&#39;, &#39;MME&#39;, &#39;SofI&#39;], [&#39;SofI&#39;, &#39;MME&#39;, &#39;YH&#39;, &#39;ChBld&#39;, &#39;SIE&#39;, &#39;SU&#39;]]
 
 &gt;&gt;&gt;&gt;  Bot2  &lt;&lt;&lt;&lt;
-ORDER  1       ENERGY USED:  684.0
-Delivery Location: 2ndStG      Items:  [&#39;Fruit Bowl&#39;]
-ORDER  2       ENERGY USED:  684.0
-Delivery Location: ChBld      Items:  [&#39;Coffee&#39;, &#39;Bagel&#39;]
-Overall Path: [[&#39;SU&#39;, &#39;2ndStG&#39;], [&#39;2ndStG&#39;, &#39;SU&#39;, &#39;SIE&#39;, &#39;ChBld&#39;], [&#39;ChBld&#39;, &#39;SIE&#39;, &#39;SU&#39;]]
+ORDER  1       ENERGY USED:  3953.0
+Delivery Location: MME      Items:  [&#39;Tacos&#39;, &#39;Coca Cola&#39;]
+ORDER  2       ENERGY USED:  3953.0
+Delivery Location: ArchB      Items:  [&#39;Chickfila&#39;]
+Overall Path: [[&#39;SU&#39;, &#39;SIE&#39;, &#39;ChBld&#39;, &#39;YH&#39;, &#39;MME&#39;], [&#39;MME&#39;, &#39;SofI&#39;, &#39;CCP&#39;, &#39;ArchB&#39;], [&#39;ArchB&#39;, &#39;CCP&#39;, &#39;SofI&#39;, &#39;MME&#39;, &#39;YH&#39;, &#39;ChBld&#39;, &#39;SIE&#39;, &#39;SU&#39;]]
 
 &gt;&gt;&gt;&gt;  Bot3  &lt;&lt;&lt;&lt;
-ORDER  1       ENERGY USED:  2105.0
-Delivery Location: SofI      Items:  [&#39;Panera Salad&#39;, &#39;Iced Tea&#39;]
-Overall Path: [[&#39;SU&#39;, &#39;SIE&#39;, &#39;ChBld&#39;, &#39;YH&#39;, &#39;MME&#39;, &#39;SofI&#39;], [&#39;SofI&#39;, &#39;MME&#39;, &#39;YH&#39;, &#39;ChBld&#39;, &#39;SIE&#39;, &#39;SU&#39;]]
+ORDER  1       ENERGY USED:  1890.0
+Delivery Location: ECE      Items:  [&#39;Chickfila&#39;]
+Overall Path: [[&#39;SU&#39;, &#39;2ndStG&#39;, &#39;IofR&#39;, &#39;S&amp;Hsci&#39;, &#39;ECE&#39;], [&#39;ECE&#39;, &#39;S&amp;Hsci&#39;, &#39;IofR&#39;, &#39;2ndStG&#39;, &#39;SU&#39;]]
 
 </pre>
 </div>
