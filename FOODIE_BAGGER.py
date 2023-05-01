@@ -15,7 +15,7 @@ observed_data = {
 }
 
 #the items in the order have to be in observed_data list.
-order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 1],  ["loaf of bread",1], ["chips", 1]]
+order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 5],  ["loaf of bread",1], ["chips", 1]]
 
 def expnad_list():
     for i in order:
@@ -51,7 +51,10 @@ def rules():
         for item in order:
             if "frozen_food" in observed_data[item[0]]:
                 print(f"Rule {1:02} applies: bag {item[0]} in the freezer bag")
-                order.remove(item)
+                if item[1] == 1:
+                    order.remove(item)
+                else:
+                    item[1] = item[1] - 1
         #need to bag large items first
         item = find_item("L")
         if item is None:
@@ -96,36 +99,56 @@ def rules():
         if "need_new_bag" in working_memory:
             print(f"Rule {8:02} applies: starting a new bag")
             bags_count = bags_count + 1
+            current_bag_items = 0
 
         #bag large item R9
         if "large" in working_memory and current_bag_items < 1 and "fragile" not in working_memory:
             print(f"Rule {9:02} applies: put {item[0]} in bag_{bags_count}")
             current_bag_items = current_bag_items + 1
-            order.remove(item)
+            #order.remove(item)
+            if item[1] == 1:
+                order.remove(item)
+            else:
+                item[1] = item[1] - 1
             if not find_item("L"):
                 bags_count = bags_count + 1
+                current_bag_items = 0
             working_memory.clear()
             
         #bag medioum item R10
         if "medioum" in working_memory and current_bag_items < 5 and "fragile" not in working_memory:
             print(f"Rule 10 applies: put {item[0]} in bag_{bags_count}")
-            order.remove(item)
+            #order.remove(item)
+            if item[1] == 1:
+                order.remove(item)
+            else:
+                item[1] = item[1] - 1
             if not find_item("M"):
                 bags_count = bags_count + 1
+                current_bag_items = 0
             working_memory.clear()
 
         #bag medioum item R11
         if "small" in working_memory and current_bag_items < 10 and "fragile" not in working_memory:
             print(f"Rule 11 applies: put {item[0]} in bag_{bags_count}")
-            order.remove(item)
+            #order.remove(item)
+            if item[1] == 1:
+                order.remove(item)
+            else:
+                item[1] = item[1] - 1
             if not find_item("S"):
                 bags_count = bags_count + 1
+                current_bag_items = 0
             working_memory.clear()
 
         #bag fragile items last R12
         if "fragile" in working_memory:
             print(f"Rule 12 applies: put {item[0]} in a separete bag labeled \"Fragile\" and place it on top of the other bags to avoid being crushed.")
-            order.remove(item)
+            #order.remove(item)
+            if item[1] == 1:
+                order.remove(item)
+            else:
+                item[1] = item[1] - 1
 
         if not order:
             print(f"*** bagging is finished ***")
