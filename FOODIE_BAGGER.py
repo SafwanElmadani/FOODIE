@@ -6,8 +6,8 @@ observed_data = {
     "bag of onions": [9], 
     "chips": [0.5,"fragile"],
     "meat": [7],
-    "gallon of milk": [8.6],
-    "gallon of water": [8.3],
+    "1-gallon of milk": [8.6],
+    "1-gallon of water": [8.3],
     "watermelon": [9],
     "pasta": [1.1],
     "pint of ice cream": [1.04,"frozen_food"],
@@ -15,7 +15,13 @@ observed_data = {
 }
 
 #the items in the order have to be in observed_data list.
-order = [ ["gallon of water", 2] , ["pint of ice cream", 1], ["meat", 1],  ["loaf of bread",1], ["chips", 1]]
+order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 1],  ["loaf of bread",1], ["chips", 1]]
+
+def expnad_list():
+    for i in order:
+        if i[1] > 1:
+            pass
+
 
 
 working_memory = []
