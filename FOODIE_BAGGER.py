@@ -16,15 +16,23 @@ observed_data = {
     "Bag of potatoes": [9],
     "ground beef": [2],
     "sliced smoked turkey": [4],
-    "12 pack of soda": [10]
-
+    "12 pack of soda": [10],
+    "Bag of apples": [6],
+    "Bag of flour": [5],
+    "Bag of sugar": [5]
 }
 
 #the items in the order have to be in observed_data list.
-order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 5],  ["loaf of bread",1], ["chips", 1]]
+order = []
 
 def set_order(args):
-    print(f"{args}")
+    global order
+    if args[1] == "order1":
+        order = [ ["gallon of milk", 2], ["dozen eggs", 1], ["bag of chips",1], ["loaf of bread", 2], ["pint of icecream", 1], ["jar of peanut butter", 1], ["12 pack of soda", 1]]
+    if args[1] == "order2":
+        order = [ ["gallon of water", 3] , ["pint of ice cream", 1], ["ground beef", 3], ["loaf of bread",1], ["Dozen eggs", 1], ["bag of flour", 2], ["bag of sugar", 4]]
+    if args[1] == "order3":
+        order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 5],  ["loaf of bread",1], ["chips", 1]]
     pass
 
 working_memory = []
