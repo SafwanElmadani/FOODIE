@@ -1,22 +1,31 @@
 
+import sys
 
 observed_data = {
     "loaf of bread": [1],
-    "eggs": [2, "fragile"], 
+    "Dozen eggs": [2, "fragile"], 
     "bag of onions": [9], 
-    "chips": [0.5,"fragile"],
+    "bag of chips": [0.5,"fragile"],
     "meat": [7],
-    "1-gallon of milk": [8.6],
-    "1-gallon of water": [8.3],
+    "gallon of milk": [8.6],
+    "gallon of water": [8.3],
     "watermelon": [9],
     "pasta": [1.1],
     "pint of ice cream": [1.04,"frozen_food"],
+    "jar of peanut butter": [2.5],
+    "Bag of potatoes": [9],
+    "ground beef": [2],
+    "sliced smoked turkey": [4],
+    "12 pack of soda": [10]
 
 }
 
 #the items in the order have to be in observed_data list.
 order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 5],  ["loaf of bread",1], ["chips", 1]]
 
+def set_order(args):
+    print(f"{args}")
+    pass
 
 working_memory = []
 current_bag_items = 0
@@ -149,5 +158,6 @@ def rules():
             break
 
 if __name__ == "__main__":
-    rules()
+    #rules()
+    set_order(sys.argv)
     pass
