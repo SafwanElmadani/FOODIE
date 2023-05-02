@@ -3,36 +3,36 @@ import sys
 
 observed_data = {
     "loaf of bread": [1],
-    "Dozen eggs": [2, "fragile"], 
+    "dozen eggs carton": [2, "fragile"], 
     "bag of onions": [9], 
     "bag of chips": [0.5,"fragile"],
-    "meat": [7],
     "gallon of milk": [8.6],
     "gallon of water": [8.3],
     "watermelon": [9],
     "pasta": [1.1],
     "pint of ice cream": [1.04,"frozen_food"],
     "jar of peanut butter": [2.5],
-    "Bag of potatoes": [9],
+    "bag of potatoes": [9],
     "ground beef": [2],
     "sliced smoked turkey": [4],
     "12 pack of soda": [10],
-    "Bag of apples": [6],
-    "Bag of flour": [5],
-    "Bag of sugar": [5]
+    "bag of apples": [6],
+    "bag of flour": [5],
+    "bag of sugar": [5]
 }
 
 #the items in the order have to be in observed_data list.
 order = []
 
 def set_order(args):
+    print(args[1])
     global order
     if args[1] == "order1":
-        order = [ ["gallon of milk", 2], ["dozen eggs", 1], ["bag of chips",1], ["loaf of bread", 2], ["pint of icecream", 1], ["jar of peanut butter", 1], ["12 pack of soda", 1]]
+        order = [ ["gallon of milk", 2], ["dozen eggs carton", 1], ["bag of chips",1], ["loaf of bread", 2], ["pint of ice cream", 1], ["jar of peanut butter", 1], ["12 pack of soda", 1]]
     if args[1] == "order2":
-        order = [ ["gallon of water", 3] , ["pint of ice cream", 1], ["ground beef", 3], ["loaf of bread",1], ["Dozen eggs", 1], ["bag of flour", 2], ["bag of sugar", 4]]
+        order = [ ["gallon of water", 3] , ["pint of ice cream", 1], ["ground beef", 3], ["loaf of bread",1], ["dozen eggs carton", 1], ["bag of flour", 2], ["bag of sugar", 4], ["watermelon", 1] , ["bag of potatoes", 1]]
     if args[1] == "order3":
-        order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 5],  ["loaf of bread",1], ["chips", 1]]
+        order = [ ["gallon of water", 2] , ["pint of ice cream", 2], ["sliced smoked turkey", 3],  ["watermelon",1], ["bag of onions", 2]]
     pass
 
 working_memory = []
@@ -50,6 +50,10 @@ def find_item(size):
             return i
         
         if observed_data[i[0]][0] < 5 and size == 'S':
+            #return non-fragile items fist
+            for j in order:
+                if "fragile" not in observed_data[j[0]]:
+                    return j
             return i
 
 def rules():
@@ -61,7 +65,7 @@ def rules():
         #bag frozen items R1
         for item in order:
             if "frozen_food" in observed_data[item[0]]:
-                print(f"Rule {1:02} applies: bag {item[0]} in the freezer bag")
+                print(f"Rule {1:02} applies: bag 1 {item[0]} in the freezer bag")
                 if item[1] == 1:
                     order.remove(item)
                 else:
@@ -114,7 +118,7 @@ def rules():
 
         #bag large item R9
         if "large" in working_memory and current_bag_items < 1 and "fragile" not in working_memory:
-            print(f"Rule {9:02} applies: put {item[0]} in bag_{bags_count}")
+            print(f"Rule {9:02} applies: put 1 {item[0]} in bag_{bags_count}")
             current_bag_items = current_bag_items + 1
             #order.remove(item)
             if item[1] == 1:
@@ -128,7 +132,7 @@ def rules():
             
         #bag medioum item R10
         if "medioum" in working_memory and current_bag_items < 5 and "fragile" not in working_memory:
-            print(f"Rule 10 applies: put {item[0]} in bag_{bags_count}")
+            print(f"Rule 10 applies: put 1 {item[0]} in bag_{bags_count}")
             #order.remove(item)
             if item[1] == 1:
                 order.remove(item)
@@ -141,7 +145,7 @@ def rules():
 
         #bag medioum item R11
         if "small" in working_memory and current_bag_items < 10 and "fragile" not in working_memory:
-            print(f"Rule 11 applies: put {item[0]} in bag_{bags_count}")
+            print(f"Rule 11 applies: put 1 {item[0]} in bag_{bags_count}")
             #order.remove(item)
             if item[1] == 1:
                 order.remove(item)
@@ -154,18 +158,24 @@ def rules():
 
         #bag fragile items last R12
         if "fragile" in working_memory:
-            print(f"Rule 12 applies: put {item[0]} in a separete bag labeled \"Fragile\" and place it on top of the other bags to avoid being crushed.")
+            print(f"Rule 12 applies: put 1 {item[0]} in a separete bag labeled \"Fragile\" and place it on top of the other bags to avoid being crushed.")
             #order.remove(item)
             if item[1] == 1:
                 order.remove(item)
             else:
                 item[1] = item[1] - 1
+            working_memory.clear()
 
         if not order:
             print(f"*** bagging is finished ***")
             break
 
 if __name__ == "__main__":
-    #rules()
+    if (len(sys.argv) != 2):
+        print("usage:\nFOODIE_BAGGER.py order#")
+        sys.exit()
     set_order(sys.argv)
+    # set_order([0 , "order1"])
+    rules()
+
     pass
