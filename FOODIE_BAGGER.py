@@ -17,12 +17,6 @@ observed_data = {
 #the items in the order have to be in observed_data list.
 order = [ ["1-gallon of water", 2] , ["pint of ice cream", 1], ["meat", 5],  ["loaf of bread",1], ["chips", 1]]
 
-def expnad_list():
-    for i in order:
-        if i[1] > 1:
-            pass
-
-
 
 working_memory = []
 current_bag_items = 0
