@@ -123,60 +123,62 @@ class astar:
 
 
     def astar(self, start_state, goal_state, search_tree):
-        # Initialize the open and closed sets
+        # Open and closed sets
         open_set = [(0, start_state)]
         closed_set = set()
         
-        # Initialize the dictionary to keep track of the path and cost
+        # Keep track of the path traveled and the cost with the following datatypes
         path = {}
         cost = {}
         path[start_state] = None
         cost[start_state] = 0
         
-        # Loop until the open set is empty
+        # Continue the search while the open set is not empty
         while len(open_set) > 0:
-            # Pop the node with the smallest f value from the open set
+            # Choose the node with the lowest f value to continue with, and take it out of the open set
             current_node = heapq.heappop(open_set)[1]
             #print(current_node)
             current_node = search_tree[current_node].name
             
-            # Check if the current node is the goal state
+            # First check if the current node is already the goal state
             if current_node == goal_state:
-                # Construct the path and return it along with the total cost
+                # Add the cost of the node to the total cost
                 total_cost = cost[current_node]
                 current_path = []
+                # Backtrack to determine the path, and then flip the result to show the proper sequence
                 while current_node is not None:
                     current_path.append(current_node)
                     current_node = path[current_node]
-                current_path.reverse()
+                current_path.reverse() 
+                # conclude search and return the path and total cost
                 return current_path, total_cost
             
-            # Add the current node to the closed set
+            # Whether goal state or not, add the current node to the closed set
             closed_set.add(current_node)
             
-            # Loop through the neighbors of the current node
+            # Search through the children/neighbors of the current node and get their cost and names
             for neighbor in search_tree[current_node].children:
                 edge_cost = neighbor.g_n
                 neighbor = neighbor.name
 
-                # Skip neighbors that have already been visited
+                # Avoid a loop by not visiting neighbors already in our closed set
                 if neighbor in closed_set:
                     continue
                 
-                # Calculate the tentative g and f values for the neighbor
+                # Calculate the g and f values for the nodes based on ege costs and heuristics.
                 tentative_g = cost[current_node] + edge_cost
                 tentative_f = tentative_g + self.heuristic(search_tree[neighbor], search_tree[goal_state])
                 
-                # Add the neighbor to the open set if it's not already there
+                # Add the neighbors to the open set so they can be explored on next iteration
                 if ((tentative_f, neighbor) not in open_set) and (neighbor not in closed_set):
                     heapq.heappush(open_set, (tentative_f, neighbor))
                     
-                # Update the path and cost if the tentative g value is better than the current one
+                # Update the path with the path that has the best g/f values
                 if tentative_g < cost.get(neighbor, float('inf')):
                     path[neighbor] = current_node
                     cost[neighbor] = tentative_g
                     
-        # If we reach this point, there is no path from the start to the goal state
+        # No path is found if this return condition is met
         return None, None
 
 
