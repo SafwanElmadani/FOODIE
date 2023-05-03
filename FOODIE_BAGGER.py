@@ -31,9 +31,9 @@ def set_order(args):
         order = [ ["gallon of milk", 2], ["dozen eggs carton", 1], ["bag of chips",1], ["loaf of bread", 2], ["pint of ice cream", 1], ["jar of peanut butter", 1], ["12 pack of soda", 1]]
     if args[1] == "order2":
         order = [ ["gallon of water", 3] , ["pint of ice cream", 1], ["ground beef", 3], ["loaf of bread",1], ["dozen eggs carton", 1], ["bag of flour", 2], ["bag of sugar", 4], ["watermelon", 1] , ["bag of potatoes", 1]]
-    if args[1] == "order3":
-        order = [ ["gallon of water", 2] , ["pint of ice cream", 2], ["sliced smoked turkey", 3],  ["watermelon",1], ["bag of onions", 2]]
-    pass
+    else:
+        print("no such order!")
+        sys.exit()
 
 working_memory = []
 current_bag_items = 0
@@ -133,6 +133,7 @@ def rules():
         #bag medioum item R10
         if "medioum" in working_memory and current_bag_items < 5 and "fragile" not in working_memory:
             print(f"Rule 10 applies: put 1 {item[0]} in bag_{bags_count}")
+            current_bag_items = current_bag_items + 1
             #order.remove(item)
             if item[1] == 1:
                 order.remove(item)
@@ -146,6 +147,7 @@ def rules():
         #bag medioum item R11
         if "small" in working_memory and current_bag_items < 10 and "fragile" not in working_memory:
             print(f"Rule 11 applies: put 1 {item[0]} in bag_{bags_count}")
+            current_bag_items = current_bag_items + 1
             #order.remove(item)
             if item[1] == 1:
                 order.remove(item)
@@ -175,7 +177,7 @@ if __name__ == "__main__":
         print("usage:\nFOODIE_BAGGER.py order#")
         sys.exit()
     set_order(sys.argv)
-    # set_order([0 , "order1"])
+    # set_order([0 , "order2"])
     rules()
 
     pass
